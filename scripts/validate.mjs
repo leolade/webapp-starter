@@ -59,7 +59,23 @@ for (const name of readdirSync(join(root, 'skills'))) {
   }
 }
 
-const scaffold = join(root, 'skills', 'angular-project-starter', 'scripts', 'scaffold.mjs');
+// Claude Code plugin manifests. Kept to fields that older Claude Code versions also accept (for example no
+// `displayName` in plugin.json: it fails validation there), and names must agree or the install id breaks.
+try {
+  const plugin = JSON.parse(readFileSync(join(root, '.claude-plugin', 'plugin.json'), 'utf8'));
+  const marketplace = JSON.parse(readFileSync(join(root, '.claude-plugin', 'marketplace.json'), 'utf8'));
+  if (!plugin.name) fail('plugin.json: missing name');
+  if ('displayName' in plugin) fail('plugin.json: displayName is rejected by older Claude Code versions; remove it');
+  if (!marketplace.name || !marketplace.owner?.name) fail('marketplace.json: name and owner.name are required');
+  if (!marketplace.metadata?.description) fail('marketplace.json: metadata.description is expected by older Claude Code versions');
+  const entry = (marketplace.plugins ?? []).find((p) => p.source === './');
+  if (!entry) fail('marketplace.json: no plugin entry with source "./"');
+  else if (entry.name !== plugin.name) fail(`marketplace.json entry "${entry.name}" must equal plugin.json name "${plugin.name}"`);
+} catch (error) {
+  fail(`plugin manifests: ${error.message}`);
+}
+
+const scaffold = join(root, 'skills', 'webapp-starter', 'scripts', 'scaffold.mjs');
 const cases = [
   ['--mode', 'single', '--name', 'demo'],
   ['--mode', 'single', '--name', 'demo', '--pwa', '--deploy', 'gha'],

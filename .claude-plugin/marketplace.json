@@ -1,0 +1,24 @@
+{
+  "name": "webapp-starter",
+  "description": "Skills to start web projects the right way.",
+  "owner": {
+    "name": "leolade",
+    "url": "https://github.com/leolade"
+  },
+  "plugins": [
+    {
+      "name": "webapp-starter",
+      "source": "./",
+      "description": "Creates a verified Angular project from scratch: strict ESLint, Vitest, Playwright + axe, Angular Aria + Tailwind v4, CI and AI-ready issue forms, with optional Fastify API, PostgreSQL, auth, PWA, push notifications and Dokploy / GitHub Actions deployment.",
+      "category": "development",
+      "keywords": [
+        "angular",
+        "scaffolding",
+        "starter"
+      ]
+    }
+  ],
+  "metadata": {
+    "description": "Skills to start web projects the right way."
+  }
+}

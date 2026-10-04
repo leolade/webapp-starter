@@ -2,7 +2,7 @@
 
 Agent skills for starting web projects the right way. Currently one skill:
 
-## `angular-project-starter`
+## `webapp-starter`
 
 Creates a complete Angular project from scratch on the **latest stable Angular**, verified end to end before it
 tells you it is done. It asks a few questions (backend, PWA, auth, push notifications, database, deployment, GitHub
@@ -30,9 +30,21 @@ and checks that the installed copies are current.
 
 ### Install
 
+With the [skills CLI](https://skills.sh) (Claude Code, Cursor, Codex and others):
+
 ```bash
 npx skills add leolade/webapp-starter
 ```
+
+Or as a Claude Code plugin from this repository's marketplace:
+
+```bash
+claude plugin marketplace add leolade/webapp-starter
+claude plugin install webapp-starter@webapp-starter
+```
+
+Inside a session the plugin skill is invoked as `/webapp-starter:webapp-starter`; it also triggers on its own when you ask
+for a new Angular project.
 
 Then ask your agent for something like *"Crée une nouvelle app Angular"* or *"Create a new Angular app with an API,
 auth and a database"*. Preview what the CLI finds without installing: `npx skills add leolade/webapp-starter --list`.
@@ -47,12 +59,13 @@ only needed to run the end-to-end tests of projects with a database.
 On 2026-10-04 with Angular 22.2: web-only, PWA, monorepo, database, and the full stack (auth, PWA, push, Dokploy)
 projects generated, `pnpm check` and build green, 12 end-to-end tests against PostgreSQL, both Docker images built and
 the production stack started. Not verified: Dokploy itself, the SSH deployment, real push delivery, and `gh repo create`
-on a real account. Details in `skills/angular-project-starter/references/versions-and-compat.md`.
+on a real account. Details in `skills/webapp-starter/references/versions-and-compat.md`.
 
 ### Layout
 
 ```
-skills/angular-project-starter/
+.claude-plugin/    plugin.json and marketplace.json (Claude Code plugin marketplace)
+skills/webapp-starter/
   SKILL.md        workflow and rules the agent follows
   scripts/        deterministic steps (scaffold, install, verify, GitHub)
   assets/         template layers copied into the generated project

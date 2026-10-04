@@ -1,5 +1,5 @@
 ---
-name: angular-project-starter
+name: webapp-starter
 description: >-
   Creates a complete Angular project from scratch on the latest stable Angular: strict ESLint
   (error-or-nothing), Vitest, Playwright + axe, Angular Aria + Tailwind v4, a token-saving `pnpm

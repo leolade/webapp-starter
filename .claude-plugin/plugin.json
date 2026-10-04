@@ -1,0 +1,20 @@
+{
+  "name": "webapp-starter",
+  "version": "1.0.0",
+  "description": "Skill that creates a verified Angular project from scratch: strict ESLint, Vitest, Playwright + axe, Angular Aria + Tailwind v4, CI, issue forms, and optional Fastify API, PostgreSQL, auth, PWA, push and deployment.",
+  "author": {
+    "name": "leolade",
+    "url": "https://github.com/leolade"
+  },
+  "homepage": "https://github.com/leolade/webapp-starter",
+  "repository": "https://github.com/leolade/webapp-starter",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "scaffolding",
+    "starter",
+    "playwright",
+    "tailwindcss",
+    "agent-skills"
+  ]
+}
