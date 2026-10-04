@@ -1,0 +1,6 @@
+# Override used by the GitHub Actions SSH deploy only: publish the web service on port 80 of the host.
+# Put TLS in front (Caddy, Traefik, a cloud load balancer); Dokploy does this for you and does not use this file.
+services:
+  web:
+    ports:
+      - '80:80'

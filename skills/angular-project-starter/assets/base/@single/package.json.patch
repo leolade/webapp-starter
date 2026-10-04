@@ -1,0 +1,13 @@
+{
+  "engines": { "node": ">=24.15.0" },
+  "scripts": {
+    "prepare": "husky",
+    "check": "node scripts/check.mjs",
+    "fix": "eslint . --fix && prettier --write .",
+    "lint": "eslint . --max-warnings 0 --cache",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:e2e": "playwright test --config e2e/playwright.config.ts",
+    "knip": "knip"
+  }
+}

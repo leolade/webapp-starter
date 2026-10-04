@@ -1,0 +1,34 @@
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+{{#if pwa}}
+import { SwUpdate } from '@angular/service-worker';
+import { EMPTY } from 'rxjs';
+{{/if}}
+import { App } from './app';
+
+describe('App', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [App],
+      providers: [
+        provideRouter([]),
+{{#if pwa}}
+        // The service worker is not registered in unit tests: give the update banner an inert SwUpdate.
+        { provide: SwUpdate, useValue: { versionUpdates: EMPTY } },
+{{/if}}
+      ],
+    }).compileComponents();
+  });
+
+  it('creates the app', () => {
+    const fixture = TestBed.createComponent(App);
+    expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('renders a heading', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const heading = (fixture.nativeElement as HTMLElement).querySelector('h1');
+    expect(heading?.textContent).toContain('Hello');
+  });
+});

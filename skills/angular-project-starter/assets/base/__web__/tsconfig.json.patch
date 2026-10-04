@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+{{#if mono}}
+    "rewriteRelativeImportExtensions": true,
+{{/if}}
+    "noUncheckedIndexedAccess": true
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  }
+}

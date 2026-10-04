@@ -1,0 +1,6 @@
+[
+  { "name": "bug", "color": "d73a4a", "description": "Something is broken" },
+  { "name": "feature", "color": "0e8a16", "description": "New capability or change" },
+  { "name": "needs-triage", "color": "fbca04", "description": "Not yet reviewed" },
+  { "name": "ai-ready", "color": "5319e7", "description": "Specified well enough for an agent to implement unattended" }
+]

@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "vapid:generate": "node src/push/generate-vapid.ts"
+  }
+}

@@ -1,0 +1,15 @@
+{
+{{#if mono}}
+  "name": "@{{scope}}/web",
+{{/if}}
+  "scripts": {
+    "dev": "ng serve",
+{{#if mono}}
+    "typecheck": "ngc -p tsconfig.app.json --noEmit && tsc -p tsconfig.spec.json --noEmit",
+{{/if}}
+{{#if single}}
+    "typecheck": "ngc -p tsconfig.app.json --noEmit && tsc -p tsconfig.spec.json --noEmit && tsc -p e2e/tsconfig.json --noEmit",
+{{/if}}
+    "test": "ng test --no-watch --quiet --progress=false --reporters=dot"
+  }
+}

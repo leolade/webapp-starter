@@ -1,0 +1,45 @@
+{{#if mono}}
+import { provideHttpClient } from '@angular/common/http';
+{{/if}}
+import {
+  type ApplicationConfig,
+{{#if auth}}
+  inject,
+{{/if}}
+{{#if pwa}}
+  isDevMode,
+{{/if}}
+{{#if auth}}
+  provideAppInitializer,
+{{/if}}
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+import { provideRouter } from '@angular/router';
+{{#if pwa}}
+import { provideServiceWorker } from '@angular/service-worker';
+{{/if}}
+import { routes } from './app.routes';
+{{#if auth}}
+import { Auth } from './core/auth/auth';
+{{/if}}
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+{{#if mono}}
+    // Same-origin API (dev proxy / production reverse proxy): cookies travel without extra configuration.
+    provideHttpClient(),
+{{/if}}
+    provideRouter(routes),
+{{#if auth}}
+    // Load the session before the first navigation so guards and the header know who is signed in.
+    provideAppInitializer(() => inject(Auth).refresh()),
+{{/if}}
+{{#if pwa}}
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+{{/if}}
+  ],
+};

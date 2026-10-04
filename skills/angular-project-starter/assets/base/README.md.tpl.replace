@@ -1,0 +1,31 @@
+# {{name}}
+
+Angular web app{{#if mono}} with a Fastify API and DTOs shared through Zod schemas{{/if}}.
+
+## Getting started
+
+Requirements: Node 24 (`.node-version`), pnpm (`corepack enable`){{#if db}}, Docker for the local database{{/if}}.
+
+```bash
+pnpm install
+{{#if db}}
+pnpm db:up          # local PostgreSQL
+{{/if}}
+pnpm dev            # {{#if mono}}web on http://localhost:4200, API on http://localhost:3000 (proxied under /api){{/if}}{{#if single}}http://localhost:4200{{/if}}
+```
+
+## Everyday commands
+
+| Command | What it does |
+|---|---|
+| `pnpm check` | The quality gate: format, lint, typecheck, unit{{#if mono}}/API{{/if}} tests, dead-code check. Run before every push. |
+| `pnpm fix` | Auto-fix lint and formatting |
+| `pnpm test:e2e` | Playwright end-to-end and accessibility tests |
+| `pnpm build` | Production build |
+
+{{#if db}}
+Copy `.env.example` to `.env` and fill in the secrets before `pnpm dev`.
+
+{{/if}}
+Working on this repository with an AI agent: read `CLAUDE.md`. Issues use the forms in `.github/ISSUE_TEMPLATE`
+(bug, feature) and are written so an agent can implement them from the description alone.

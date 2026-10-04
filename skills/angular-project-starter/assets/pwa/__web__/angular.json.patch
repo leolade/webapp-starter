@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "{{projectKey}}": {
+      "architect": {
+        "build": {
+          "configurations": {
+            "production": { "serviceWorker": "ngsw-config.json" }
+          }
+        }
+      }
+    }
+  }
+}

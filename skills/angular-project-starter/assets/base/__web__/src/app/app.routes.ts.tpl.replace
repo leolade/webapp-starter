@@ -1,0 +1,33 @@
+import type { Routes } from '@angular/router';
+{{#if auth}}
+import { authGuard } from './core/auth/auth.guard';
+{{/if}}
+
+export const routes: Routes = [
+{{#if mono}}
+  { path: 'status', loadComponent: () => import('./features/status/status').then((m) => m.Status) },
+{{/if}}
+{{#if db}}
+  {
+    path: 'notes',
+{{#if auth}}
+    canActivate: [authGuard],
+{{/if}}
+    loadComponent: () => import('./features/notes/notes').then((m) => m.Notes),
+  },
+{{/if}}
+{{#if notifs}}
+  {
+    path: 'notifications',
+{{#if auth}}
+    canActivate: [authGuard],
+{{/if}}
+    loadComponent: () => import('./features/notifications/notifications').then((m) => m.Notifications),
+  },
+{{/if}}
+{{#if auth}}
+  { path: 'login', loadComponent: () => import('./features/login/login').then((m) => m.Login) },
+  { path: 'register', loadComponent: () => import('./features/register/register').then((m) => m.Register) },
+  { path: 'account', canActivate: [authGuard], loadComponent: () => import('./features/account/account').then((m) => m.Account) },
+{{/if}}
+];

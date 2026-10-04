@@ -1,0 +1,21 @@
+import { Component{{#if auth}}, inject{{/if}}, signal } from '@angular/core';
+import { RouterOutlet{{#if mono}}, RouterLink{{/if}} } from '@angular/router';
+{{#if auth}}
+import { Auth } from './core/auth/auth';
+{{/if}}
+{{#if pwa}}
+import { UpdateBanner } from './core/pwa/update-banner';
+{{/if}}
+
+@Component({
+  imports: [RouterOutlet{{#if mono}}, RouterLink{{/if}}{{#if pwa}}, UpdateBanner{{/if}}],
+  selector: 'app-root',
+  styleUrl: './app.css',
+  templateUrl: './app.html',
+})
+export class App {
+{{#if auth}}
+  protected readonly auth = inject(Auth);
+{{/if}}
+  protected readonly title = signal('{{name}}');
+}

@@ -1,0 +1,53 @@
+{
+  "skill_name": "angular-project-starter",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Je veux créer une nouvelle app Angular pour gérer mes recettes de cuisine, nom du projet : recettes. Réponses à tes questions : backend oui, PWA oui, authentification oui, notifications oui, base de données oui, déploiement Dokploy, ne pas créer de dépôt GitHub. Génère le projet dans le dossier ./recettes et vérifie-le (la base de données locale n'est pas disponible : ne lance pas les tests e2e qui en ont besoin et dis-le).",
+      "expected_output": "A pnpm monorepo with apps/web, apps/api, packages/shared, e2e; auth, db, PWA, push, Dokploy files generated; `pnpm check` and `pnpm build` green; no remote repository created.",
+      "files": [],
+      "assertions": [
+        "apps/web, apps/api, packages/shared and e2e exist, and no extra top-level app folders were invented",
+        "`pnpm check` exits 0 in ./recettes",
+        "`node <skill>/scripts/check-eslint-no-warn.mjs ./recettes` exits 0",
+        "typescript in apps/web resolves to 6.0.x and typescript in apps/api resolves to a different (7.x) version, or the report explains a fallback",
+        "CLAUDE.md is under 200 lines and does not import docs with @path",
+        ".claude/rules contains web.md (from ng new) and path-scoped rules with a `paths:` frontmatter",
+        ".github/ISSUE_TEMPLATE/bug.yml, feature.yml, .github/workflows/ci.yml and deploy.yml exist; deploy.yml mentions DOKPLOY_DEPLOY_HOOK",
+        "no git remote exists and no repository was created on GitHub",
+        "the final report says e2e was not run and why",
+        "a commit with the message \"added stuff\" is rejected by the commit-msg hook in ./recettes and \"feat(api): add notes endpoint\" is accepted",
+        ".github/workflows/ci.yml contains a commits job that is skipped for dependabot[bot]"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Crée-moi un projet Angular tout simple, juste le front : sans backend, sans PWA, sans authentification, sans notifications, sans base de données. Déploiement avec GitHub Actions, pas de dépôt GitHub. Le projet s'appelle vitrine, dans ./vitrine. Lance tout ce qui peut être vérifié (y compris les tests e2e).",
+      "expected_output": "A single Angular project at the root (no monorepo) with strict ESLint, Vitest, Playwright + axe, CI and issue forms, GitHub Actions deploy workflow; all gates green including e2e.",
+      "files": [],
+      "assertions": [
+        "./vitrine has src/app and angular.json at the root, and no apps/ or packages/ directory",
+        "`pnpm check` and `pnpm test:e2e` and `pnpm build` all exit 0 in ./vitrine",
+        "e2e/tests contains an axe accessibility test",
+        ".github/workflows/deploy.yml exists and builds only the web image",
+        "the issue forms contain no 'api' or 'shared' area options",
+        "`pnpm-workspace.yaml` has strictPeerDependencies: true",
+        "package.json devDependencies contain typescript matching ~6.0",
+        "commitlint.config.mjs exists and its scope-enum has no api or shared scope"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Nouvelle app Angular \"alertes\" : je veux des notifications push et une base de données, mais pas de PWA ni de backend. Déploiement Dokploy, pas de dépôt GitHub. Génère-la dans ./alertes.",
+      "expected_output": "The assistant detects the impossible combination, explains that push needs PWA + backend + database (and that database needs a backend), applies the matrix (notifications off, and database off unless the user enables the backend), and generates a consistent single Angular project.",
+      "files": [],
+      "assertions": [
+        "the response explains that notifications require PWA and backend, and that the database requires a backend",
+        "no push, VAPID, web-push, drizzle or fastify code or dependency exists in ./alertes",
+        "the project is a single Angular project (no apps/ directory) unless the response shows the user explicitly agreed to enable the backend",
+        "`pnpm check` exits 0 in ./alertes",
+        "a Dokploy deploy workflow exists in ./alertes/.github/workflows"
+      ]
+    }
+  ]
+}

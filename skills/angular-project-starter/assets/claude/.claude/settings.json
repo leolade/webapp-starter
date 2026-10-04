@@ -1,0 +1,35 @@
+{
+  "env": {
+    "NO_COLOR": "1",
+    "FORCE_COLOR": "0"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(pnpm check:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm fix)",
+      "Bash(pnpm format:check)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build)",
+      "Bash(pnpm knip)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run watch:*)"
+    ],
+    "deny": [
+      "Read(./node_modules/**)",
+      "Read(./**/node_modules/**)",
+      "Read(./**/dist/**)",
+      "Read(./**/.angular/**)",
+      "Read(./**/coverage/**)",
+      "Read(./**/playwright-report/**)",
+      "Read(./**/test-results/**)",
+      "Read(./pnpm-lock.yaml)"
+    ]
+  }
+}

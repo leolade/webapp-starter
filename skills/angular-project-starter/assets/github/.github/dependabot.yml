@@ -1,0 +1,31 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      angular:
+        patterns: ['@angular/*', '@angular-devkit/*', 'angular-eslint']
+      eslint:
+        patterns: ['eslint*', '@eslint/*', '@eslint-community/*', '@typescript-eslint/*', 'typescript-eslint']
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # TypeScript is pinned by Angular and typescript-eslint; bump it by hand when both support it.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns: ['*']

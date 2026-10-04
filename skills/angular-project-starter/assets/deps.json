@@ -1,0 +1,111 @@
+{
+  "_comment": "Package NAMES only. Versions are resolved at install time (latest compatible); peer conflicts abort because pnpm strictPeerDependencies is on. TypeScript is the exception and is pinned per package by scripts/install-deps.mjs.",
+  "root": {
+    "dev": [
+      "eslint",
+      "@eslint/js",
+      "typescript-eslint",
+      "angular-eslint",
+      "@eslint-community/eslint-plugin-eslint-comments",
+      "eslint-plugin-sonarjs",
+      "eslint-plugin-unicorn",
+      "eslint-plugin-import-x",
+      "eslint-import-resolver-typescript",
+      "eslint-plugin-better-tailwindcss",
+      "@vitest/eslint-plugin",
+      "eslint-plugin-playwright",
+      "prettier",
+      "prettier-plugin-tailwindcss",
+      "knip",
+      "@types/node",
+      "husky",
+      "@commitlint/cli",
+      "@commitlint/config-conventional"
+    ]
+  },
+  "web": {
+    "prod": [
+      "@angular/aria"
+    ],
+    "dev": []
+  },
+  "e2e": {
+    "dev": [
+      "@playwright/test",
+      "@axe-core/playwright",
+      "@types/node"
+    ]
+  },
+  "mono": {
+    "root": {
+      "dev": [
+        "eslint-plugin-security"
+      ]
+    },
+    "api": {
+      "prod": [
+        "fastify",
+        "fastify-type-provider-zod",
+        "zod",
+        "@fastify/helmet"
+      ],
+      "dev": [
+        "vitest",
+        "@vitest/coverage-v8",
+        "@types/node"
+      ]
+    },
+    "shared": {
+      "prod": [
+        "zod"
+      ],
+      "dev": [
+        "vitest"
+      ]
+    }
+  },
+  "features": {
+    "db": {
+      "api": {
+        "prod": [
+          "drizzle-orm",
+          "postgres"
+        ],
+        "dev": [
+          "drizzle-kit",
+          "@electric-sql/pglite"
+        ]
+      }
+    },
+    "auth": {
+      "api": {
+        "prod": [
+          "better-auth",
+          "fastify-plugin"
+        ]
+      },
+      "web": {
+        "prod": [
+          "better-auth"
+        ]
+      }
+    },
+    "notifs": {
+      "api": {
+        "prod": [
+          "web-push"
+        ],
+        "dev": [
+          "@types/web-push"
+        ]
+      }
+    },
+    "pwa": {
+      "web": {
+        "prod": [
+          "@angular/service-worker"
+        ]
+      }
+    }
+  }
+}
